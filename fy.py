@@ -56,3 +56,33 @@ class Garage:
           print(f"{car.title} by  has been returned.")
        else:
            print("This car was not lent out.")
+
+
+           # dz4
+           import random
+           from typing import Self
+           class va:
+               def __init__(self, number):
+                   self.__number = number
+
+           def __encapsulate(self):
+               operand = random.choice(['+', '-', '*', '/'])
+
+           operand = random.randint(1, 10)
+           if operand == '+':
+               self.__number += operand
+           elif operand == '-':
+               self.__number -= operand
+           elif operand == '*':
+               self.__number *= operand
+           elif operand == '/':
+               self.__number /= operand
+
+           def get_result(self):
+               self.__encapsulate()
+
+           Self__number
+           number = int(input("Введіть число: "))
+           cipher = va(number)
+           result = cipher.get_result()
+           print("Результат: ", get_result)
