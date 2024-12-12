@@ -28,3 +28,31 @@ class Pet:
         Енергія: {self.energy}
         Щасливий: {self.happiness}
         """)
+
+
+# дз 3
+class Car:
+   def __init__(self, title, year):
+       self.title = title
+       self.year = year
+       self.status = "available"
+
+class Garage:
+   def __init__(self):
+       self.cars = []
+   def add_car(self, car):
+       self.cars.append(car)
+   def remove_car(self, car):
+       self.cars.remove(car)
+   def lend_car(self, car):
+       if car.status == "available":
+           car.status = "lent"
+           print(f"{car.title} by has been lent out.")
+       else:
+           print("Sorry, this car is not available.")
+   def return_car(self, car):
+       if car.status == "lent":
+          car.status = "available"
+          print(f"{car.title} by  has been returned.")
+       else:
+           print("This car was not lent out.")
