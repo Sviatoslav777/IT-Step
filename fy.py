@@ -221,4 +221,62 @@ for _ in res:
 
 
 
+#дз сайти
+class CurrencyConverter:
+   def __init__(self):
+       self.rates = {}
+   def get_rates(self):
+       response = requests.get("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?money")
+       data = response.()
+       for item in data:
+           self.rates[item['cc']] = item['rate']
+   def convert(self, amount, from_currency, to_currency):
+       if from_currency != "USD":
+           amount = amount / self.rates[from_currency]
+       amount = round(amount * self.rates[to_currency], 2)
+       return amount
+converter = CurrencyConverter()
+converter.get_rates()
+while True:
+   try:
+       amount = float(input("Enter the amount of currency: "))
+       from_currency = input("Enter the currency code of the amount you entered: ")
+       to_currency = "USD"
+       converted_amount = converter.convert(amount, from_currency.upper(), to_currency)
+       print("The amount of {} {} is equal to {:.2f} USD".format(amount, from_currency.upper(), converted_amount))
+       break
+   except KeyError:
+       print("Invalid currency code entered. Please try again.")
+   except ValueError:
+       print("Invalid input entered. Please try again.")
+
+
+
+#дз БД погода львів
+import sqlite3
+conn = sqlite3.connect('weather.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS weather
+            (date_time TEXT, temperature REAL)''')
+conn.commit()
+conn.close()
+import requests
+url = 'https://ua.sinoptik.ua/погода-львів'
+response = requests.get(url)
+if response.status_code == 200:
+   html = response.content
+else:
+   print('Не вдалося отримати сторінку')
+from bs4 import BeautifulSoup
+soup = BeautifulSoup('html.parser')
+today_weather = soup.find('div', {'class': 'weatherToday'}).('div', {'class': 'temperature'}).text
+today_temperature = int(today_weather.split('°')[0])
+print(f"Температура сьогодні: {today_temperature}°C")
+
+
+
+
+
+
+
 
